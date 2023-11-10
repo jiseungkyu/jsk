@@ -7,8 +7,8 @@ coffee = skimage.data.coffee()
 
 start = time.time() # 시간 측정
 slic = skimage.segmentation.slic(coffee, compactness=20, n_segments=600, start_label=1) # 영상을 분할해 객체에 저장
-g = skimage.future.graph.rag_mean_color(coffee, slic, mode="similarity") # rag_mean_color: 슈퍼 화소를 노드로 사용, similarity:에지 가중치로 사용한 그래프를 구성하여 객체에 저장
-ncut = skimage.future.graph.cut_normalized(slic, g)  # 정규화 절단
+g = skimage.graph.rag_mean_color(coffee, slic, mode="similarity") # rag_mean_color: 슈퍼 화소를 노드로 사용, similarity:에지 가중치로 사용한 그래프를 구성하여 객체에 저장
+ncut = skimage.graph.cut_normalized(slic, g)  # 정규화 절단
 print(coffee.shape, " Coffee 영상을 분할하는데 ", time.time() - start, "초 소요")
 
 marking = skimage.segmentation.mark_boundaries(coffee, ncut) # 영역 경계를 표시하고 객체에 저장
